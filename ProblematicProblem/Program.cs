@@ -1,15 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
-ProblematicProblem
+
+namespace ProblematicProblem
 {
-    Program class
+    class Program
     {
-        Random rng;        
+        private readonly Random rng;        
         static bool cont = true;
-        static List<string> activities = new List<string>() { "Movies", "Paintball", "Bowling", "Lazer Tag", "LAN Party", "Hiking", "Axe Throwing", "Wine Tasting" }
+        static List<string> activities = new List<string>() { "Movies", "Paintball", "Bowling", "Lazer Tag", "LAN Party", "Hiking", "Axe Throwing", "Wine Tasting" };
 
         static void Main(string[] args)
         {
-            Console.Write("Hello, welcome to the random activity generator! \nWould you like to generate a random activity? yes/no: ")
+            Console.Write("Hello, welcome to the random activity generator! \nWould you like to generate a random activity? yes/no: ");
             bool cont = bool.Parse(Console.ReadLine());
 
             Console.WriteLine();
@@ -20,7 +25,7 @@ ProblematicProblem
             Console.WriteLine();
 
             Console.Write("What is your age? ");
-            int userAge = Console.ReadLine();
+            int userAge = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine();
 
@@ -47,15 +52,15 @@ ProblematicProblem
 
                     activities.Add(userAddition);
 
-                    foreach (string activity activities)
+                    foreach (string activity in activities)
                     {
                         Console.Write($"{activity} ");
-                        Thread.Sleep(250);
+                        Thread.Sleep(250); //Class with a static method //needed using directory //in this case, using System.Threading
                     }
 
                     Console.WriteLine();
                     Console.WriteLine("Would you like to add more? yes/no: ");
-                    string addToList = bool.Parse(Console.ReadLine());
+                    _ = bool.Parse(Console.ReadLine()); //Tried changing string to bool
                 }
             }
             
@@ -69,7 +74,7 @@ ProblematicProblem
                     Thread.Sleep(500);
                 }
 
-                Console.WriteLine()
+                Console.WriteLine();
 
                 Console.Write("Choosing your random activity");
 
@@ -79,28 +84,28 @@ ProblematicProblem
                     Thread.Sleep(500);
                 }
 
-                Console.WriteLine()
+                Console.WriteLine();
+                var rng = new Random();
+                int randomNumber = rng.Next(activities.Count); //rng originally underlined, required an object reference, so created new object rng in Random class (above line)
 
-                int randomNumber = rng.Next(activities.Count);
-
-                string randomActivity = activities[randomNumber]
-
-                if (userAge > 21 && randomActivity == "Wine Tasting")
+                string randomActivity = activities[randomNumber];
+                if (userAge < 21 && randomActivity == "Wine Tasting") //Use ConvertTo maybe?
                 {
+                    _ = (randomActivity);
                     Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
                     Console.WriteLine("Pick something else!");
 
                     activities.Remove(randomActivity);
 
-                    string randomNumber = rng.Next(activities.Count);
-
-                    string randomActivity = activities[randomNumber];
+                    
+                    randomNumber = rng.Next(activities.Count);
+                    _ = activities[randomNumber];
                 }
 
-                Console.Write($"Ah got it! {randomActivity}, your random activity is: {userName}! Is this ok or do you want to grab another activity? Keep/Redo: ")
-                ConsoleWriteLine();
-                bool cont = bool.Parse(Console.ReadLine());
+                Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
+                Console.WriteLine();
+                _ = bool.Parse(Console.ReadLine());
             }
         }
     }
-}}
+}
